@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link  rel="stylesheet" type="text/css" href="/examples/circle.css"> 
+  <!-- Load the Paper.js library -->
+  <script type="text/javascript" src="paper-full.js"></script>
+  <!-- Define inlined PaperScript associate it with myCanvas -->
+  <script type="text/paperscript" canvas="myCanvas">
+
+  var circles = []; 
+
+  function onKeyDown(event) {
+    // add circle to new point 
+    var maxPoint = new Point(view.size.width, view.size.height); 
+    var randomPoint = Point.random(); 
+    var point = maxPoint * randomPoint;
+    var newCircle = new Path.Circle(point, 10); 
+    newCircle.fillColor = 'orange'; 
+    circles.push(newCircle); 
+  }  
+  // Create a circle shaped path at the center of the view,
+// with a radius of 70:
+var animatedCircle = new Path.Circle(new Point(300,300), 100);
+animatedCircle.fillColor = "red"; 
+
+function onFrame(event) {
+  for (var i = 0; i < circles.length; i++) { 
+      console.log(circles[i]); 
+      circles[i].fillColor.hue += 1; 
+
+  }
+    animatedCircle.fillColor.hue += 1;
+    // animatedCircle.scale(.9); // change to adjust speed .99 
+}
+
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
